@@ -1,1 +1,7 @@
 config/* 
+/bin/
+.settings
+.classpath
+execute.bat
+jdbc.jar
+postgresql-42.2.18.jar

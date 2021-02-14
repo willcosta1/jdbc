@@ -2,6 +2,8 @@ package com.will.view;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import com.will.controller.FuncionarioController;
 import com.will.model.Funcionario;
@@ -9,6 +11,22 @@ import com.will.model.Funcionario;
 public class Main {
 
 	public static void main(String[] args) throws SQLException {
+		
+		Timer timer = new Timer();
+		final long HORA = (1000 * 60 * 60);
+		TimerTask timerTask = new TimerTask() {
+
+			@Override
+			public void run() {
+				buscarFuncionarios();
+			}
+			
+		};
+		
+		timer.scheduleAtFixedRate(timerTask, 0, HORA);
+	}
+	
+	public static void buscarFuncionarios() {
 		ArrayList<String> nomes = new ArrayList<String>();
 		ArrayList<Funcionario> funcionarios = new ArrayList<Funcionario>();
 
@@ -31,6 +49,7 @@ public class Main {
 		for (Funcionario funcionario : funcionarios) {
 			System.out.println(funcionario.toString());
 		}
+		System.out.println("End");
 	}
 
 }
